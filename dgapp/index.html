@@ -18,19 +18,33 @@
       <script type="text/javascript" charset="utf-8" src="jdrupal-7.x-1.0.min.js"></script>
       
       <!-- DrupalGap -->
-      <script type="text/javascript" charset="utf-8" src="bin/drupalgap.min.js"></script>
+      <!-- <script type="text/javascript" charset="utf-8" src="bin/drupalgap.min.js"></script> -->
+      <script type="text/javascript" charset="utf-8" src="bin/drupalgap.js"></script>
       <script type="text/javascript" charset="utf-8" src="app/settings.js"></script>
       <link rel="stylesheet" href="drupalgap.css" />
+      
+      <!-- Google MAP API -->
+      <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
+      
+      <!-- Baidu MAP API -->
+      <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+      <style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+      </style>
+      <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=960306c9d4b8e1f6acc50e527e04d5ad"></script> -->
+      
+      <!-- AMAP API -->
+      <script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=9a02a76c273877a51b4ef36ffd2882d5"></script>
 
     </head>
     <body>
 
       <!-- Mobile Application Splash Screen -->
       <div id="_drupalgap_splash" data-role="page">
-         <div data-role="header" data-theme="b"><h2>DrupalGap</h2></div>
          <div class="ui-content" data-role="content">
-            <div id="_drupalgap_splash_content">
-              <img src="images/drupalgap.jpg" alt="DrupalGap" />
+            <div id="_drupalgap_splash_content" style="background-image: url('images/front.jpg');background-size: 100% 100%;display: block;width: 100%; height: 500px;">
+              <!-- <img src="images/front.jpg" alt="妈妈厨房" style="position: absolute; top: 50%; left: 50%; margin-left: -64px; margin-top: -64px;" /> -->
+              &nbsp;
             </div>
          </div>
       </div>
