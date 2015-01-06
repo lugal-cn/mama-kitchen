@@ -1,0 +1,11 @@
+name = Mama Kitches
+description = "Mama Kitches APP Control"
+core = 7.x
+configure = admin/config/system/kitchenes
+
+; Information added by Drupal.org packaging script on 2014-11-07
+version = "7.x-1.2"
+core = "7.x"
+project = "mama_kitchen"
+datestamp = "1418730940"
+

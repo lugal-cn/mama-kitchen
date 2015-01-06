@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Mama Kitchenes admin modules.
+ *
+ * @author Lugal
+ * @link http://www.soladesign.cn/
+ */
+
+/**
+ * Implements hook_help().
+ *
+ * @return string
+ */
+function kitchenes_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#kitchenes':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Mama Kitchenes, It\'s private kitchen for your.') . '</p>';
+      return $output;
+    case 'admin/config/system/kitchenes':
+      return t('<p>The Private kitchen from perfor</p>
+        <p>balabalabala</p>');
+  }
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * @return array
+ */
+function kitchenes_menu() {
+  $items = array();
+
+  $items['admin/config/system/kitchenes'] = array(
+      'title' => 'MAMA Kitchenes',
+      'description' => 'Mama Kitchenese configuration.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('kitchenes_admin_settings'),
+      'access callback' => 'user_access',
+      'access arguments' => array('administer kitchenes'),
+      'type' => MENU_NORMAL_ITEM,
+      'file' => 'kitchenes.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_init()
+ */
+function kitchenes_init() {
+
+  // Init map development env.
+  $amap_head = _amap_head();
+  drupal_add_js($amap_head);
+
+  // Load custom JS.
+  drupal_add_js(drupal_get_path('module', 'kitchenes') . '/js/kitchenes.js');
+
+  // Load custom CSS.
+  drupal_add_css(drupal_get_path('module', 'kitchenes') . '/css/kitchenes.css');
+
+}
+
+/**
+ * Init amap head with key.
+ */
+function _amap_head() {
+  $version = '1.3';
+  $key = variable_get('kitchenes_amap_key', '');
+  return 'http://webapi.amap.com/maps?v=' . $version . '&key=' . $key . '"';
+}
+
+/**
+ * Implements hook_user_presave().
+ */
+function kitchenes_user_presave(&$edit, $account, $category) {
+  // Make sure that our form value 'mymodule_foo' is stored as
+  // 'mymodule_bar' in the 'data' (serialized) column.
+
+  // Hardcode set geofield by baidu map field.
+  if (isset($edit['field_html5_position'])) {
+    $field_language = field_language('user', $edit, 'field_html5_position');
+
+    if ( $edit['field_baidu_position'][$field_language][0]['lat'] ) {
+      $edit['field_html5_position'][$field_language][0]['geom']['lat'] = $edit['field_baidu_position'][$field_language][0]['lat'];
+    }
+
+    if ( $edit['field_baidu_position'][$field_language][0]['lon'] ) {
+      $edit['field_html5_position'][$field_language][0]['geom']['lon'] = $edit['field_baidu_position'][$field_language][0]['lon'];
+    }
+
+  }
+
+
+}
